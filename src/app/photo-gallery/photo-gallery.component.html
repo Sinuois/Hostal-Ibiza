@@ -1,0 +1,42 @@
+<div class="gallery-container">
+
+  <!-- Si no hay fotos -->
+  <div *ngIf="(fotosHabitaciones.length + fotosAreasComunes.length) === 0" class="text-center mt-5">
+    <p>Pronto compartiremos imágenes del Hostal Ibiza. ¡Te esperamos!</p>
+  </div>
+
+  <!-- Habitaciones -->
+  <div *ngIf="fotosHabitaciones.length > 0" class="gallery-section">
+    <h3><i class="bi bi-door-closed"></i> Habitaciones</h3>
+    <div class="photo-grid">
+      <div *ngFor="let foto of fotosHabitaciones" class="photo-item">
+        <a [href]="foto.thumbnailLink" target="_blank">
+          <img [src]="foto.thumbnailLink" [alt]="foto.name" />
+        </a>
+      </div>
+    </div>
+    <br>
+    <button class="btn-elegante" *ngIf="nextPageTokenHabitaciones" [disabled]="!habilitado" (click)="loadMoreHabitaciones()">
+      Cargar más
+    </button>
+  </div>
+
+  <br><br>
+
+  <!-- Áreas comunes -->
+  <div *ngIf="fotosAreasComunes.length > 0" class="gallery-section">
+    <h3><i class="bi bi-tree"></i> Áreas Comunes</h3>
+    <div class="photo-grid">
+      <div *ngFor="let foto of fotosAreasComunes" class="photo-item">
+        <a [href]="foto.thumbnailLink" target="_blank">
+          <img [src]="foto.thumbnailLink" [alt]="foto.name" />
+        </a>
+      </div>
+    </div>
+    <br>
+    <button class="btn-elegante" *ngIf="nextPageTokenAreasComunes" [disabled]="!habilitado" (click)="loadMoreAreasComunes()">
+      Cargar más
+    </button>
+  </div>
+
+</div>

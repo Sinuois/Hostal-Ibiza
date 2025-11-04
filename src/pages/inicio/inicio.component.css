@@ -1,0 +1,209 @@
+/* ============= ESTRUCTURA GENERAL ============= */
+body {
+  font-family: 'Poppins', 'Lato', sans-serif;
+  background-color: #faf8f4;
+  color: #4a3d2f;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============= CARRUSEL PRINCIPAL ============= */
+.container-fluid {
+  padding: 0;
+}
+
+.carousel {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-inner, .carousel-item {
+  width: 100vw;
+  height: 100vh;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(90%);
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 55%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Ajustes tipográficos */
+.carousel-caption .titulo-principal {
+  font-size: 3.2rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0.4rem;
+}
+
+.carousel-caption .subtitulo {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+}
+
+/* CTA principal */
+.btn-elegante {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 2px solid #a8c27d; /* Verde más luminoso */
+  color: #f8f8f8; /* Texto blanco para contraste */
+  background-color: rgba(0, 0, 0, 0.3); /* Fondo semitransparente para destacar sobre la foto */
+  border-radius: 30px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(3px); /* Sutil desenfoque detrás */
+}
+
+.btn-elegante:hover {
+  background-color: #a8c27d; /* Verde cálido */
+  color: #2f3e2f; /* Texto oscuro al hacer hover */
+  border-color: #a8c27d;
+}
+
+/* ====== Ajuste fino para pantallas pequeñas ====== */
+@media (max-width: 768px) {
+  .btn-elegante {
+    padding: 8px 18px;   /* Un poco más compacto */
+    font-size: 0.9rem;   /* Texto ligeramente más pequeño */
+  }
+}
+
+/* ============= SECCIONES ============= */
+.section {
+  margin: 70px 0;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3f4038;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4f4b44;
+}
+
+/* ============= MAPA ============= */
+.map-container {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* ============= TEXTAREAS CONTACTO (estilo más natural) ============= */
+#reserva textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 12px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  border: 1.5px solid #b5bfa0; /* Verde grisáceo suave */
+  border-radius: 12px;
+  resize: none;
+  outline: none;
+  background-color: #f6f9f4; /* Verde muy claro en lugar de crema */
+  color: #3d3b2f;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#reserva textarea::placeholder {
+  color: #7b8770;
+}
+
+#reserva textarea:hover {
+  border-color: #8fa77c; /* Verde oliva suave */
+  background-color: #f3f8ef;
+}
+
+#reserva textarea:focus {
+  border-color: #7b8a5a; /* Verde del botón */
+  box-shadow: 0 0 10px rgba(123, 138, 90, 0.25);
+  background-color: #fff;
+}
+
+/* ============= BOTÓN SECUNDARIO (CONTACTO) ============= */
+.section #reserva .btn-elegante {
+  margin-top: 15px;
+  border-color: #7b8a5a;
+  color: #7b8a5a;
+}
+.section #reserva .btn-elegante:hover {
+  background-color: #7b8a5a;
+  color: #fff;
+}
+
+/* ============= GALERÍA ============= */
+app-photo-gallery {
+  display: block;
+  margin-top: 30px;
+}
+
+/* ============= RESPONSIVE ============= */
+@media (max-width: 768px) {
+  .carousel-caption {
+    top: 38%; /* un poco más arriba en móviles */
+  }
+
+  .carousel-caption .titulo-principal {
+    font-size: 2.2rem;
+  }
+
+  .carousel-caption .subtitulo {
+    font-size: 1rem;
+  }
+ 
+}
+
+.btn-contacto {
+  border: 2px solid #6b8a4a; /* verde oliva suave */
+  color: #6b8a4a;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-contacto:hover {
+  background-color: #6b8a4a;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(107, 138, 74, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-contacto:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+

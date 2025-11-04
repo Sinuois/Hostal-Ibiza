@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+
+.gallery-container {
+  text-align: center;
+  padding: 20px 10px;
+  color: #4A5C46;
+}
+
+.gallery-section {
+  margin-bottom: 40px;
+}
+
+h3 {
+  font-family: 'Playfair Display', serif;
+  color: #4A5C46;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+h3 i {
+  margin-right: 8px;
+  color: #8BA87E;
+}
+
+.photo-grid {
+  display: grid;
+  gap: 15px;
+  justify-items: center;
+}
+
+/* Tres columnas en escritorio */
+@media (min-width: 992px) {
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Dos columnas en tablets */
+@media (min-width: 600px) and (max-width: 991px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Una columna en móviles */
+@media (max-width: 599px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.photo-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Botón elegante reutilizado */
+.btn-elegante {
+  border: 2px solid #6b8a4a; /* verde oliva suave */
+  color: #6b8a4a;
+  background-color: #ffffff;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-elegante:hover {
+  background-color: #6b8a4a;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(107, 138, 74, 0.35);
+  transform: translateY(-2px);
+}
+
+
+@media (max-width: 768px) {
+  .btn-elegante {
+    width: 100%;
+  }
+}
