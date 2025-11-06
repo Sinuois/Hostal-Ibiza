@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleDriveService } from '../services/drive.service';
+import { environment } from '../../environments/environment';
 
-interface Photo {
+interface Section {
   id: string;
   name: string;
-  mimeType: string;
-  thumbnailLink: string;
+  photos: any[];
+  nextPageToken?: string;
 }
 
 @Component({
@@ -14,42 +15,26 @@ interface Photo {
   styleUrls: ['./photo-gallery.component.css']
 })
 export class PhotoGalleryComponent implements OnInit {
-  fotosHabitaciones: Photo[] = [];
-  fotosAreasComunes: Photo[] = [];
-  nextPageTokenHabitaciones?: string;
-  nextPageTokenAreasComunes?: string;
+  sections: Section[] = [];
+  rootFolderId = environment.googleDrive.rootFolderId;
   habilitado = true;
 
-  constructor(private googleDriveService: GoogleDriveService) {}
+  constructor(private driveService: GoogleDriveService) {}
 
   ngOnInit() {
-    this.loadHabitaciones(3);
-    this.loadAreasComunes(3);
-  }
-
-  loadHabitaciones(numFotos: number) {
-    this.googleDriveService.getFotosHabitaciones(this.nextPageTokenHabitaciones, numFotos).subscribe((response: any) => {
-      this.fotosHabitaciones = [...this.fotosHabitaciones, ...response.files];
-      this.nextPageTokenHabitaciones = response.nextPageTokenHabitaciones || undefined;
-      this.habilitado = true;
+    this.driveService.getAllSections(this.rootFolderId, 2).subscribe((sections: any[]) => {
+      this.sections = sections;
     });
   }
 
-  loadAreasComunes(numFotos: number) {
-    this.googleDriveService.getFotosAreasComunes(this.nextPageTokenAreasComunes, numFotos).subscribe((response: any) => {
-      this.fotosAreasComunes = [...this.fotosAreasComunes, ...response.files];
-      this.nextPageTokenAreasComunes = response.nextPageTokenAreasComunes || undefined;
-      this.habilitado = true;
-    });
-  }
-
-  loadMoreHabitaciones() {
+  loadMore(section: Section) {
     this.habilitado = false;
-    this.loadHabitaciones(4);
-  }
-
-  loadMoreAreasComunes() {
-    this.habilitado = false;
-    this.loadAreasComunes(4);
+    this.driveService
+      .getPhotosFromFolder(section.id, 4, section.nextPageToken)
+      .subscribe((response) => {
+        section.photos = [...section.photos, ...response.files];
+        section.nextPageToken = response.nextPageToken;
+        this.habilitado = true;
+      });
   }
 }

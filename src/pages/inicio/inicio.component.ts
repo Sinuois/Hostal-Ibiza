@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, HostListener } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 declare var window: any;
 
@@ -49,8 +50,8 @@ export class InicioComponent implements OnInit {
 
   /** Enviar mensaje de contacto al bot de Telegram */
   enviarComentario() {
-    const botToken = '8341668092:AAFCBtPNpf95zWPpj2wjMdqfpQCPCRdiYPE';
-    const chatId = '-1003191266957';
+    const botToken = environment.telegram.botToken;
+    const chatId = environment.telegram.chatId;
     const mensaje = `📩 Nuevo mensaje de contacto:\n\n👤 De: ${this.emisor}\n💬 Mensaje: ${this.comentario}`;
 
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
