@@ -1,29 +1,40 @@
 <div *ngIf="sections.length === 0">
   <br><br>
-  <p class="text-center">Aquí dejaremos las fotos del matrimonio. ¡Te esperamos!</p>
+  <p class="text-center">Próximamente</p>
 </div>
 
 <div *ngFor="let section of sections" class="section-wrapper">
   <h3 class="section-title">{{ section.name }}</h3>
 
   <div class="photo-grid">
-    <div *ngFor="let foto of section.photos" class="photo-item">
-      <a target="_blank">
-        <img [src]="foto.thumbnailLink" [alt]="foto.name" />
+    <div *ngFor="let item of section.photos" class="photo-card">
+      <!-- Imagen -->
+      <a *ngIf="!item.isVideo" target="_blank">
+        <img [src]="item.thumbnailLink" [alt]="item.name" loading="lazy" />
       </a>
+
+      <!-- Video -->
+      <div *ngIf="item.isVideo" class="video-wrapper">
+        <iframe
+          [src]="item.videoLink"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </div>
 
-  <br>
-
-  <button
-    class="btn-elegante"
-    *ngIf="section.nextPageToken"
-    [disabled]="!habilitado"
-    (click)="loadMore(section)"
-  >
-    Cargar más
-  </button>
+  <div class="button-container">
+    <button
+      class="btn-elegante"
+      *ngIf="section.nextPageToken"
+      [disabled]="!habilitado"
+      (click)="loadMore(section)"
+    >
+      Cargar más
+    </button>
+  </div>
 
   <br><br>
 </div>

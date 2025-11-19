@@ -5,19 +5,19 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PhotoGalleryComponent } from '../photo-gallery/photo-gallery.component';
-import { CountdownComponent } from '../countdown/countdown.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    PhotoGalleryComponent,
-    CountdownComponent
+    FooterComponent,
+    PhotoGalleryComponent
   ],
   exports: [
     NavbarComponent,
-    PhotoGalleryComponent,
-    CountdownComponent
+    FooterComponent,
+    PhotoGalleryComponent
   ],
   imports: [
     CommonModule,

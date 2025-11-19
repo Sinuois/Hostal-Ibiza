@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { environment } from '../../environments/environment';
 
 declare var window: any;
@@ -9,11 +9,13 @@ declare var window: any;
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent implements OnInit {
+export class InicioComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
 
   emisor: string = '';
   comentario: string = '';
-  botonDeshabilitado = true; 
+  botonDeshabilitado = true;
 
   constructor(private http: HttpClient) {}
 
@@ -23,8 +25,22 @@ export class InicioComponent implements OnInit {
       iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
     };
 
-    // Ejecutar la animación de aparición al cargar
+    // Ejecutar animación de aparición al cargar
     this.animateSections();
+  }
+
+  ngAfterViewInit(): void {
+    const video = this.bgVideo?.nativeElement;
+    if (video) {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          console.warn('Autoplay bloqueado, intentando reactivar...');
+          setTimeout(() => video.play(), 500);
+        });
+      }
+    }
   }
 
   @HostListener('window:scroll', [])
@@ -32,7 +48,7 @@ export class InicioComponent implements OnInit {
     this.animateSections();
   }
 
-  /** Animación para que las secciones aparezcan suavemente al hacer scroll */
+  // Animación para que las secciones aparezcan suavemente al hacer scroll
   animateSections() {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
@@ -43,39 +59,31 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  /** Habilita o deshabilita el botón según los campos */
+  // Habilita o deshabilita el botón según los campos
   verificarCampos(): void {
     this.botonDeshabilitado = !(this.emisor.trim() && this.comentario.trim());
   }
 
-  /** Enviar mensaje de contacto al bot de Telegram */
-  enviarComentario() {
-    const botToken = environment.telegram.botToken;
-    const chatId = environment.telegram.chatId;
-    const mensaje = `📩 Nuevo mensaje de contacto:\n\n👤 De: ${this.emisor}\n💬 Mensaje: ${this.comentario}`;
+  mensaje: string = "";
 
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const payload = { chat_id: chatId, text: mensaje };
+  placeholderMensaje: string = 
+    "Hola, me gustaría consultar sobre disponibilidad, precios o realizar una reserva.";
 
-    if (this.emisor === '' || this.comentario === '') {
-      alert('Por favor, completa todos los campos antes de enviar.');
-      return;
-    }
-
-    this.botonDeshabilitado = true;
-
-    this.http.post(url, payload).subscribe(
-      () => {
-        alert('✅ Mensaje enviado correctamente. ¡Gracias por contactarnos!');
-        this.comentario = ''; 
-        this.emisor = ''; 
-        this.botonDeshabilitado = true; 
-      },
-      error => {
-        console.error(error);
-        alert('❌ Hubo un error al enviar el mensaje. Intenta nuevamente más tarde.');
-        this.botonDeshabilitado = false;
-      }
-    );
+  getTextoFinal(): string {
+    return this.mensaje?.trim() ? this.mensaje : this.placeholderMensaje;
   }
+
+  enviarWhatsApp() {
+    const numero = "56990327387";
+    const texto = encodeURIComponent(this.getTextoFinal());
+    window.open(`https://wa.me/${numero}?text=${texto}`, "_blank");
+  }
+
+  enviarCorreo() {
+    const correo = "reservas@hostalibizatalca.cl";
+    const asunto = encodeURIComponent("Consulta / Reserva - Hostal Ibiza");
+    const cuerpo = encodeURIComponent(this.getTextoFinal());
+    window.location.href = `mailto:${correo}?subject=${asunto}&body=${cuerpo}`;
+  }
+
 }

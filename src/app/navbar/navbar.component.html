@@ -1,18 +1,27 @@
 <nav class="navbar navbar-expand-lg fixed-top custom-navbar" [class.scrolled]="isScrolled">
-  <a class="navbar-brand" href="#">Hostal Ibiza</a>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="#">
+    <img src="assets/img/logo-sin-fondo.png" alt="Hostal Logo" class="navbar-logo" />
+  </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#bienvenida" (click)="scrollToSection('bienvenida')">Inicio</a>
+        <a class="nav-link" href="#bienvenida" (click)="scrollToSection('bienvenida')">Nosotros</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#fotos" (click)="scrollToSection('fotos')">Fotos</a>
+        <a class="nav-link" href="#fotos" (click)="scrollToSection('fotos')">Fotos y videos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#ubicacion" (click)="scrollToSection('ubicacion')">Ubicación</a>

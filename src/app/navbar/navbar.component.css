@@ -1,41 +1,61 @@
 .custom-navbar {
-  background-color: rgba(255, 255, 255, 0.6); /* blanco cálido translúcido */
+  background-color: rgb(231, 229, 224); /* blanco cálido */
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  padding: 15px 30px;
+  padding: 10px 25px;
   font-family: 'Poppins', sans-serif;
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .custom-navbar.scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgb(231, 229, 224);
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.08);
 }
 
+/* Logo del hostal */
+.navbar-brand img {
+  height: 65px; /* mantiene la altura real de la navbar */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+  transform: scale(1.6); /* escala visual sin afectar altura del contenedor */
+  transform-origin: center; /* centrado al escalar */
+  margin-left: 20px;
+}
+
+
+.navbar-brand img:hover {
+  transform: scale(2.25);
+}
+
+/* Texto de marca (si se usa sin logo) */
 .navbar-brand {
   font-family: 'Playfair Display', serif;
   font-size: 1.6rem;
   font-weight: 600;
-  color: #4A5C46 !important; /* verde oliva oscuro */
+  color: #5a3e2b !important; 
   transition: color 0.3s ease;
 }
 
 .navbar-brand:hover {
-  color: #708B68 !important; /* tono más claro */
+  color: #777675 !important;
 }
 
+/* Enlaces de navegación */
 .navbar .nav-link {
   font-weight: 500;
-  color: #4A5C46 !important;
+  color: #5a3e2b !important;
   margin-right: 22px;
   transition: color 0.3s ease;
   letter-spacing: 0.3px;
 }
 
 .navbar .nav-link:hover {
-  color: #8BA87E !important; /* verde oliva claro */
+  color: #777675 !important;
 }
 
+/* Botón hamburguesa */
 .navbar-toggler {
   border: none;
 }
@@ -44,4 +64,15 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(74,92,70,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
+/* Adaptación móvil */
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 38px; /* más pequeño para móviles */
+  }
 
+  .navbar .nav-link {
+    margin-right: 0;
+    text-align: center;
+    padding: 8px 0;
+  }
+}

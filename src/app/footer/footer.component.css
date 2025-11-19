@@ -1,0 +1,86 @@
+/* ====== FOOTER ====== */
+.footer {
+  background-color: #000000; /* Fondo negro puro */
+  color: #ffffff; /* Texto blanco */
+  text-align: center;
+  padding: 40px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  z-index: 5;
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Línea sutil */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.footer-contenido {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-logo img {
+  width: 180px;
+  filter: brightness(0) invert(1); /* Vuelve blanco un logo oscuro */
+  margin-bottom: 15px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo img:hover {
+  opacity: 1;
+}
+
+.footer-info h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.footer-info p {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+}
+
+.footer-copy {
+  margin-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 15px;
+  font-size: 0.9rem;
+  color: #cccccc;
+}
+
+.footer-info a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-info a:hover {
+  opacity: 0.7;
+}
+
+/* Teléfono */
+.footer-info a[href^="tel:"] {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-info a[href^="tel:"]:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-logo img {
+    width: 150px;
+  }
+
+  .footer-info h4 {
+    font-size: 1.3rem;
+  }
+
+  .footer-info p {
+    font-size: 0.9rem;
+  }
+}

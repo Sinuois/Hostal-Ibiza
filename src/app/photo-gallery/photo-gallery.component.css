@@ -1,91 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@500&family=Great+Vibes&family=Lato:wght@400;700&family=Poppins:wght@400;600&display=swap');
 
-.gallery-container {
-  text-align: center;
-  padding: 20px 10px;
-  color: #4A5C46;
+body {
+  font-family: 'Lato', 'Poppins', sans-serif;
+  background-color: #fffaf4;
+  color: #5a3e2b;
+  margin: 0;
+  padding: 0;
 }
 
-.gallery-section {
-  margin-bottom: 40px;
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  color: #5a3e2b;
+  margin-bottom: 1rem;
 }
 
-h3 {
-  font-family: 'Playfair Display', serif;
-  color: #4A5C46;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-  position: relative;
+h1 {
+  font-size: 3rem;
+  font-family: 'Great Vibes', cursive;
 }
 
-h3 i {
-  margin-right: 8px;
-  color: #8BA87E;
+p {
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  color: #5a3e2b;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
+/* Galería */
 .photo-grid {
   display: grid;
-  gap: 15px;
-  justify-items: center;
+  gap: 10px;
 }
 
-/* Tres columnas en escritorio */
-@media (min-width: 992px) {
+/* Escritorio */
+@media (min-width: 769px) {
   .photo-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Dos columnas en tablets */
-@media (min-width: 600px) and (max-width: 991px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Una columna en móviles */
-@media (max-width: 599px) {
+/* Móviles */
+@media (max-width: 768px) {
   .photo-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.photo-item img {
+/* Tarjetas */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Imágenes */
+.photo-card img {
   width: 100%;
   height: 100%;
-  border-radius: 12px;
   object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: block;
 }
 
-.photo-item img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-}
-
-/* Botón elegante reutilizado */
+/* Botón */
 .btn-elegante {
-  border: 2px solid #6b8a4a; /* verde oliva suave */
-  color: #6b8a4a;
-  background-color: #ffffff;
-  font-weight: 600;
-  border-radius: 30px;
-  padding: 10px 25px;
+  display: block;
+  padding: 12px 35px;
+  font-size: 1rem;
+  border: 2px solid #4e3d02; 
+  color: #6b4600;
+  border-radius: 25px;
+  background-color: transparent;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 30px auto 50px;
+  text-align: center;
 }
 
 .btn-elegante:hover {
-  background-color: #6b8a4a;
-  color: #fff;
-  box-shadow: 0 6px 12px rgba(107, 138, 74, 0.35);
+  background-color: #4e3d02;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
+/* --- Video --- */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #000;
+  transition: all 0.3s ease;
+}
 
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Vertical en móviles */
 @media (max-width: 768px) {
-  .btn-elegante {
-    width: 100%;
+  .video-wrapper.vertical {
+    padding-bottom: 150%;
+  }
+}
+
+/* Horizontal forzado en escritorio */
+@media (min-width: 769px) {
+  .video-wrapper.vertical {
+    padding-bottom: 56.25%;
   }
 }
