@@ -84,3 +84,24 @@
     font-size: 0.9rem;
   }
 }
+
+.footer-redes {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-redes a img {
+  width: 32px;
+  height: 32px;
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-redes a img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+

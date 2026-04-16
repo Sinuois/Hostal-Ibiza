@@ -12,9 +12,10 @@ body, html {
 }
   
 
+/* Botón flotante WhatsApp - tamaño base */
 .whatsapp-float {
   position: fixed;
-  bottom: 25px;
+  bottom: 80px;
   right: 25px;
   width: 60px;
   height: 60px;
@@ -37,3 +38,32 @@ body, html {
   transform: scale(1.1);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
+
+/* ----- Más grande para escritorio ----- */
+@media (min-width: 1024px) {
+  .whatsapp-float {
+    width: 85px;
+    height: 85px;
+  }
+
+  .whatsapp-float img {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* ----- Más pequeño para móviles ----- */
+@media (max-width: 767px) {
+  .whatsapp-float {
+    width: 60px;
+    height: 60px;
+    bottom: 90px;
+    right: 20px;
+  }
+
+  .whatsapp-float img {
+    width: 38px;
+    height: 38px;
+  }
+}
+

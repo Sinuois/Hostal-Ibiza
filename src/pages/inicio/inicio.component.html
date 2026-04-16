@@ -3,10 +3,10 @@
     <div class="logo-fixed">
       <img src="assets/img/logo-sin-fondo.png" alt="Logo Hostal">
     </div>
-    <!-- Carrusel principal -->
     <div id="carrusel" class="carousel slide carousel-fade" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
+          <!-- Video de fondo -->
           <video
             #bgVideo
             autoplay
@@ -14,20 +14,35 @@
             loop
             playsinline
             preload="auto"
+            poster="assets/img/exterior.jpg"
             class="bg-video"
+            (error)="onVideoError()"
           >
-            <source src="assets/videos/presentacion-cut.mp4" type="video/mp4" />
+            <source [src]="videoSource" type="video/mp4" />
+            <!-- Fallback para navegadores que no reproducen video -->
+            <img src="assets/img/exterior.jpg" alt="Bienvenida">
           </video>
-          <div class="carousel-caption">
-            <a href="#reserva" class="btn-reserva-inicio">Reservar ahora</a>
-          </div>
 
+          <div class="carousel-caption">
+            <a href="https://wa.me/56990327387?text=Hola,%20me%20gustaría%20consultar%20sobre%20disponibilidad,%20precios%20o%20realizar%20una%20reserva." class="btn-reserva-inicio">Reservar ahora</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Sección Bienvenida -->
-    <div class="seccion-parallax" id="bienvenida" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/exterior.jpg');">
+    <!-- Sección Beneficios -->
+    <app-beneficios></app-beneficios>
+
+    <!-- Sección Fotos -->
+    <div class="section" id="fotos">
+      <div class="container mt-4 text-center">
+        <h2 class="section-title"><i class="bi bi-door-closed"></i> Fotos y videos</h2>
+        <app-photo-gallery></app-photo-gallery>
+      </div>
+    </div>
+
+    <!-- Sección Nosotros -->
+    <div class="seccion-parallax" id="nosotros" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/exterior.jpg');">
       <div style="height: 200px;"></div>
       <div class="container mt-4 text-center">
         <h2 class="section-title" style="color: white;"><i class="bi bi-house-heart"></i> Nosotros</h2>
@@ -42,13 +57,7 @@
       <div style="height: 200px;"></div>
     </div>
 
-    <!-- Sección Fotos -->
-    <div class="section" id="fotos">
-      <div class="container mt-4 text-center">
-        <h2 class="section-title"><i class="bi bi-door-closed"></i> Fotos y videos</h2>
-        <app-photo-gallery></app-photo-gallery>
-      </div>
-    </div>
+
 
     <!-- Sección Ubicación -->
     <div class="seccion-parallax" id="ubicacion" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/exterior.jpg');">

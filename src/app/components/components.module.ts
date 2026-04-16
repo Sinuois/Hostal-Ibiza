@@ -6,18 +6,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { PhotoGalleryComponent } from '../photo-gallery/photo-gallery.component';
 import { FooterComponent } from '../footer/footer.component';
+import { BeneficiosComponent } from '../beneficios/beneficios.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    PhotoGalleryComponent
+    PhotoGalleryComponent,
+    BeneficiosComponent
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    PhotoGalleryComponent
+    PhotoGalleryComponent,
+    BeneficiosComponent
   ],
   imports: [
     CommonModule,

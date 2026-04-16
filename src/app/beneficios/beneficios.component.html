@@ -1,0 +1,35 @@
+<!-- src/app/beneficios/beneficios.component.html -->
+
+<div class="seccion-beneficios" id="beneficios">
+  <div class="beneficios-fondo-deco">
+    <span class="deco-circulo deco-1"></span>
+    <span class="deco-circulo deco-2"></span>
+    <span class="deco-circulo deco-3"></span>
+  </div>
+
+  <div class="container">
+    <div class="beneficios-header">
+      <h2 class="beneficios-titulo">¿Por qué Reservar con Nosotros?</h2>
+      <div class="beneficios-linea">
+        <span class="linea-izq"></span>
+        <i class="bi bi-star-fill estrella-titulo"></i>
+        <span class="linea-der"></span>
+      </div>
+    </div>
+
+    <div class="beneficios-grid">
+
+      <div class="beneficio-card" *ngFor="let item of beneficios; let i = index"
+           [style.--delay]="(i * 0.12) + 's'">
+        <div class="beneficio-icono-wrap">
+          <div class="beneficio-icono-bg"></div>
+          <i class="bi {{ item.icono }} beneficio-icono"></i>
+        </div>
+        <h3 class="beneficio-titulo-card">{{ item.titulo }}</h3>
+        <p class="beneficio-desc">{{ item.descripcion }}</p>
+        <div class="beneficio-linea-bottom"></div>
+      </div>
+
+    </div>
+  </div>
+</div>

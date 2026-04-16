@@ -13,6 +13,11 @@ export class InicioComponent implements OnInit, AfterViewInit {
 
   @ViewChild('bgVideo') bgVideo!: ElementRef<HTMLVideoElement>;
 
+  readonly primaryVideoSource = 'assets/videos/presentacion-cut.mp4';
+  readonly fallbackVideoSource = 'https://hostal-ibiza-3d2e6.web.app/assets/videos/presentacion-cut.mp4';
+  videoSource = this.primaryVideoSource;
+  private usingFallbackSource = false;
+
   emisor: string = '';
   comentario: string = '';
   botonDeshabilitado = true;
@@ -20,6 +25,8 @@ export class InicioComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.setInitialVideoSource();
+
     // Permite que los iframes (mapas, formularios) se ajusten automáticamente
     window.resizeIframe = (iframe: any) => {
       iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
@@ -30,17 +37,51 @@ export class InicioComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const video = this.bgVideo?.nativeElement;
-    if (video) {
-      video.muted = true;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          console.warn('Autoplay bloqueado, intentando reactivar...');
-          setTimeout(() => video.play(), 500);
-        });
-      }
+    this.reloadAndPlayVideo();
+  }
+
+  private setInitialVideoSource(): void {
+    if (typeof window === 'undefined') {
+      return;
     }
+
+    const hostname = window.location?.hostname?.toLowerCase() || '';
+    if (hostname.endsWith('hostalibizatalca.cl')) {
+      this.videoSource = this.fallbackVideoSource;
+      this.usingFallbackSource = true;
+    }
+  }
+
+  private reloadAndPlayVideo(): void {
+    const video = this.bgVideo?.nativeElement;
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    video.load();
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        setTimeout(() => {
+          video.play().catch(() => {
+            // El navegador puede bloquear autoplay en algunos escenarios.
+          });
+        }, 500);
+      });
+    }
+  }
+
+  onVideoError(): void {
+    if (this.usingFallbackSource) {
+      return;
+    }
+
+    this.videoSource = this.fallbackVideoSource;
+    this.usingFallbackSource = true;
+
+    setTimeout(() => this.reloadAndPlayVideo(), 0);
   }
 
   @HostListener('window:scroll', [])
